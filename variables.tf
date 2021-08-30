@@ -12,53 +12,58 @@ variable "eks-cw-logging" {
 ### variables modules
 
 variable "cluster-name" {
-  type = string
-}
-variable "instance-type" {
-  type = string
+  type        = string
+  description = "nombre del cluster. P.e: k8s-virginia-almaceneros-frontend-develop"
 }
 variable "k8s-version" {
-  type = string
-}
-variable "public-key" {
-  type = string
+  type        = string
+  description = "versión de kubernetes p.e: 1.17"
 }
 variable "desired-capacity" {
-  type = string
+  type        = string
+  description = "configuración de escalamiento"
 }
 variable "max-size" {
-  type = string
+  type        = string
+  description = "configuración de escalamiento"
 }
 variable "min-size" {
-  type = string
+  type        = string
+  description = "configuración de escalamiento"
 }
 variable "node-instance-type" {
-  type = string
-}
-variable "availability-zones" {
-  type = string
+  type        = string
+  description = "Tipo de instancia de los nodos. P.e: t2.large"
 }
 variable "vpc-id" {
-  type = string
+  type        = string
+  description = "Id de la VPC"
+
 }
 variable "environment" {
-  type = string
+  type        = string
+  description = "Ambiente, p.e: development, staging, production"
 }
 variable "tag-region" {
-  type = string
+  type        = string
+  default     = "LATAM"
+  description = "Tag referente a región"
 }
 variable "country" {
-  type = string
+  type        = string
+  default     = "CL"
+  description = "Tag referente a país"
 }
 variable "ceco" {
-  type = string
+  type        = string
+  description = "Tag referente a centro de costo"
 }
 variable "owner" {
-  type = string
+  type        = string
+  description = "Tag referente a owner. P.e: PRODUCTOS DIGITALES"
 }
 variable "private-subnet-ids" {
-}
-variable "public-subnet-ids" {
+  description = "id de subnet red privada donde se alojará el cluster"
 }
 
 
