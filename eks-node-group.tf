@@ -34,3 +34,20 @@ resource "aws_eks_node_group" "eks-node-group" {
 
 
 }
+
+resource "aws_autoscaling_group_tag" "eks_node_group_autoscaler_node_template_capacity_type" {
+  for_each = toset(
+    [for asg in flatten(
+      [for resources in aws_eks_node_group.example.resources : resources.autoscaling_groups]
+    ) : asg.name]
+  )
+
+  autoscaling_group_name = each.value
+
+  tag {
+    key   = "k8s.io/cluster-autoscaler/node-template/label/eks.amazonaws.com/capacityType"
+    value = "SPOT"
+
+    propagate_at_launch = true
+  }
+}
