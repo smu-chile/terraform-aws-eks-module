@@ -49,21 +49,3 @@ resource "aws_autoscaling_group_tag" "eks_node_group_autoscaler_node_template_ca
     propagate_at_launch = false
   }
 }
-
-resource "aws_autoscaling_schedule" "off" {
-  for_each = toset(
-    [for asg in flatten(
-      [for resources in module.eks-cluster.autoscaling-resources : resources.autoscaling_groups]
-    ) : asg.name]
-  )
-  autoscaling_group_name = each.value
-  scheduled_action_name  = "off_instance"
-  min_size               = 0
-  max_size               = 0
-  desired_capacity       = 0
-  start_time             = "${local.today_date}T23:59:00Z"
-  recurrence             = "0 22 * * *"
-  lifecycle {
-    ignore_changes = [start_time]
-  }
-}
