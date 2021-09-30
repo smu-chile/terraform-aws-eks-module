@@ -35,10 +35,10 @@ resource "aws_eks_node_group" "eks-node-group" {
 
 }
 
-resource "aws_autoscaling_group_tag" "var.cluster-name" {
+resource "aws_autoscaling_group_tag" "example" {
   for_each = toset(
     [for asg in flatten(
-      [for resources in aws_eks_node_group.var.cluster-name.resources : resources.autoscaling_groups]
+      [for resources in aws_eks_node_group.example.resources : resources.autoscaling_groups]
     ) : asg.name]
   )
 
@@ -48,6 +48,6 @@ resource "aws_autoscaling_group_tag" "var.cluster-name" {
     key   = "k8s.io/cluster-autoscaler/node-template/label/eks.amazonaws.com/capacityType"
     value = "SPOT"
 
-    propagate_at_launch = true
+    propagate_at_launch = false
   }
 }
