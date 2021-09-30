@@ -12,8 +12,8 @@ resource "aws_eks_node_group" "eks-node-group" {
   instance_types = [
     var.node-instance-type
   ]
-    aws_autoscaling_group_tag = {
-    id = aws_autoscaling_group_tag.eks_node_group_autoscaler_node_template_capacity_type.id
+  aws_autoscaling_group_tag = {
+    id      = aws_eks_node_group.example.resources
     version = "latest_version"
   }
   # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
