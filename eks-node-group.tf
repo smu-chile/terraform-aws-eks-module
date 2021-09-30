@@ -35,10 +35,10 @@ resource "aws_eks_node_group" "eks-node-group" {
 
 }
 
-resource "aws_autoscaling_group_tag" "eks_node_group_autoscaler_node_template_capacity_type" {
+resource "aws_autoscaling_group_tag" "var.cluster-name" {
   for_each = toset(
     [for asg in flatten(
-      [for resources in aws_eks_node_group.example.resources : resources.autoscaling_groups]
+      [for resources in aws_eks_node_group.var.cluster-name.resources : resources.autoscaling_groups]
     ) : asg.name]
   )
 
