@@ -29,7 +29,7 @@ resource "aws_eks_node_group" "eks-node-group" {
     CECO                                        = "${var.ceco}"
     Owner                                       = "${var.owner}"
     Environment                                 = "${var.environment}"
-    asg_name                                 = "pruebaJuli"
+    asg_name                                    = "${var.asg_nam}"
   }
 
 
