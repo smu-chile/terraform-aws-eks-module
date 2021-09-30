@@ -35,19 +35,35 @@ resource "aws_eks_node_group" "eks-node-group" {
 
 }
 
-resource "aws_autoscaling_group_tag" "example" {
+resource "aws_autoscaling_group_tag" "eks_node_group_autoscaler_node_template_capacity_type" {
   for_each = toset(
     [for asg in flatten(
-      [for resources in aws_eks_node_group.example.resources : resources.autoscaling_groups]
+      [for resources in aws_eks_node_group.node_group.resources : resources.autoscaling_groups]
     ) : asg.name]
   )
 
-  autoscaling_group_name = each.value
-
+  asg_name = each.value
   tag {
-    key   = "k8s.io/cluster-autoscaler/node-template/label/eks.amazonaws.com/capacityType"
-    value = "SPOT"
-
+    key                 = "k8s.io/cluster-autoscaler/node-template/label/eks.amazonaws.com/capacityType"
+    value               = "SPOT"
     propagate_at_launch = false
+  }
+}
+
+resource "aws_autoscaling_schedule" "off" {
+  for_each = toset(
+    [for asg in flatten(
+      [for resources in module.eks-cluster.autoscaling-resources : resources.autoscaling_groups]
+    ) : asg.name]
+  )
+  autoscaling_group_name = each.value
+  scheduled_action_name  = "off_instance"
+  min_size               = 0
+  max_size               = 0
+  desired_capacity       = 0
+  start_time             = "${local.today_date}T23:59:00Z"
+  recurrence             = "0 22 * * *"
+  lifecycle {
+    ignore_changes = [start_time]
   }
 }
