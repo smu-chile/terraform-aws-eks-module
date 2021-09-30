@@ -12,5 +12,5 @@ output "route53-arn" {
 }
 
 output "autoscaling-groups" {
-  value = aws_eks_node_group.eks-node-group.resources.autoscaling_groups
+  value = aws_eks_node_group.eks-node-group.resources
 }
