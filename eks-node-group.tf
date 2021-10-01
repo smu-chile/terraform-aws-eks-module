@@ -34,6 +34,7 @@ resource "aws_eks_node_group" "eks-node-group" {
 
 
 }
+# Resource dedicated to dynamically assign a TAG to the Auto Scaling Groups of a cluster to be linked to the name of the instances. 
 resource "aws_autoscaling_group_tag" "eks-node-group" {
   for_each = toset(
     [for asg in flatten(
