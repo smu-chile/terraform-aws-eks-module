@@ -40,20 +40,20 @@ resource "aws_eks_node_group" "eks-node-group" {
 
 
 }
-resource "aws_autoscaling_group_tag" "eks-node-group" {
-  for_each = toset(
-    [for asg in flatten(
-      [for resources in aws_eks_node_group.example.resources : resources.autoscaling_groups]
-    ) : asg.name]
-  )
+# resource "aws_autoscaling_group_tag" "eks-node-group" {
+#   for_each = toset(
+#     [for asg in flatten(
+#       [for resources in aws_eks_node_group.example.resources : resources.autoscaling_groups]
+#     ) : asg.name]
+#   )
 
-  aws-virginia-polymathes-lab-develop-default-node-group = each.value
+#   aws-virginia-polymathes-lab-develop-default-node-group = each.value
   
 
-  tag {
-    key   = "k8s.io/cluster-autoscaler/node-template/label/eks.amazonaws.com/capacityType"
-    value = "SPOT"
+#   tag {
+#     key   = "k8s.io/cluster-autoscaler/node-template/label/eks.amazonaws.com/capacityType"
+#     value = "SPOT"
 
-    propagate_at_launch = false
-  }
-}
+#     propagate_at_launch = false
+#   }
+# }
