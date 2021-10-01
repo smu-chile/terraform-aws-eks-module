@@ -51,7 +51,7 @@ resource "aws_autoscaling_group_tag" "eks-node-group" {
 
   tag {
     key   = "Name"
-    value = "${var.cluster-name}-default-node-group"
+    value = "${var.cluster-name}-asg"
 
     propagate_at_launch = true
   }
