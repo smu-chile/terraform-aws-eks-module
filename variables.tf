@@ -71,4 +71,7 @@ variable "policy-name" {
   type        = string
 }
 
-
+variable "asg_name" {
+  description = "Name of asg"
+  type        = string
+}

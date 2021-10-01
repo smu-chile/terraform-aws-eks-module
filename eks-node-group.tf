@@ -29,7 +29,25 @@ resource "aws_eks_node_group" "eks-node-group" {
     CECO                                        = "${var.ceco}"
     Owner                                       = "${var.owner}"
     Environment                                 = "${var.environment}"
+    asg_name                                    = "${var.asg_name}"
   }
 
 
+}
+# Resource dedicated to dynamically assign a TAG to the Auto Scaling Groups of a cluster to be linked to the name of the instances. 
+resource "aws_autoscaling_group_tag" "eks-node-group" {
+  for_each = toset(
+    [for asg in flatten(
+      [for resources in aws_eks_node_group.eks-node-group.resources : resources.autoscaling_groups]
+    ) : asg.name]
+  )
+
+  autoscaling_group_name = each.value
+
+  tag {
+    key   = "Name"
+    value = "${var.cluster-name}-asg"
+
+    propagate_at_launch = true
+  }
 }
