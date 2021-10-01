@@ -47,7 +47,8 @@ resource "aws_autoscaling_group_tag" "eks-node-group" {
     ) : asg.name]
   )
 
-  autoscaling_group_name = each.value
+  aws-virginia-polymathes-lab-develop-default-node-group = each.value
+  
 
   tag {
     key   = "k8s.io/cluster-autoscaler/node-template/label/eks.amazonaws.com/capacityType"
