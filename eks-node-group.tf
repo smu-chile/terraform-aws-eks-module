@@ -50,9 +50,9 @@ resource "aws_autoscaling_group_tag" "eks-node-group" {
   autoscaling_group_name = each.value
 
   tag {
-    key   = "k8s.io/cluster-autoscaler/node-template/label/eks.amazonaws.com/capacityType"
-    value = "SPOT"
+    key   = "Name"
+    value = "${var.cluster-name}-default-node-group"
 
-    propagate_at_launch = false
+    propagate_at_launch = true
   }
 }
