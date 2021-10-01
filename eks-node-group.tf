@@ -12,12 +12,6 @@ resource "aws_eks_node_group" "eks-node-group" {
   instance_types = [
     var.node-instance-type
   ]
-
-  #   resource "aws_autoscaling_group_tag" "tag" {
-  #   key                 = "key"
-  #   value               = "value"
-  #   propagate_at_launch = true
-  # }
   # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
   # Otherwise, EKS will not be able to properly delete EC2 Instances and Elastic Network Interfaces.
   depends_on = [
