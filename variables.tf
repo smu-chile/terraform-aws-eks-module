@@ -70,8 +70,3 @@ variable "policy-name" {
   description = "Name of iam policy"
   type        = string
 }
-
-variable "asg_name" {
-  description = "Name of asg"
-  type        = string
-}
