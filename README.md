@@ -46,7 +46,7 @@
 | <a name="input_cluster-name"></a> [cluster-name](#input\_cluster-name) | nombre del cluster. P.e: k8s-virginia-almaceneros-frontend-develop | `string` | n/a | yes |
 | <a name="input_country"></a> [country](#input\_country) | Tag referente a país | `string` | `"CL"` | no |
 | <a name="input_desired-capacity"></a> [desired-capacity](#input\_desired-capacity) | configuración de escalamiento | `string` | n/a | yes |
-| <a name="input_eks-cw-logging"></a> [eks-cw-logging](#input\_eks-cw-logging) | Enable EKS CWL for EKS components | `list(any)` | <pre>[<br>  "api",<br>  "audit",<br>  "authenticator",<br>  "controllerManager",<br>  "scheduler"<br>]</pre> | no |
+| <a name="input_eks-cw-logging"></a> [eks-cw-logging](#input\_eks-cw-logging) | Enable EKS CWL for EKS components | `list(any)` | [] | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Ambiente, p.e: development, staging, production | `string` | n/a | yes |
 | <a name="input_k8s-version"></a> [k8s-version](#input\_k8s-version) | versión de kubernetes p.e: 1.17 | `string` | n/a | yes |
 | <a name="input_max-size"></a> [max-size](#input\_max-size) | configuración de escalamiento | `string` | n/a | yes |

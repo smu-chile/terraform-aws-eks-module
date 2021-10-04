@@ -4,7 +4,7 @@ variable "aws_region" {
   description = "The AWS Region to deploy EKS"
 }
 variable "eks-cw-logging" {
-  default     = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+  default     = []
   type        = list(any)
   description = "Enable EKS CWL for EKS components"
 }
