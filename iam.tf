@@ -73,7 +73,7 @@ resource "aws_iam_instance_profile" "node" {
 # ROUTE53
 
 resource "aws_iam_policy" "route53" {
-  name   = "AllowExternalDNSUpdates-${var.policy-name}-${var.environment}"
+  name   = "AllowExternalDNSUpdates-${var.cluster-name}"
   policy = <<EOF
 {
     "Version": "2012-10-17",
