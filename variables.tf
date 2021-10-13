@@ -65,8 +65,3 @@ variable "owner" {
 variable "private-subnet-ids" {
   description = "id de subnet red privada donde se alojará el cluster"
 }
-
-variable "policy-name" {
-  description = "Name of iam policy"
-  type        = string
-}

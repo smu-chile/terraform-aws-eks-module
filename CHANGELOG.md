@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.5] - 2020-10-04
+
+remove policy name variable
+
 ## [1.0.4] - 2020-10-04
 
 disable monitoring by default
