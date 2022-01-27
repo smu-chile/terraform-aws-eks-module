@@ -26,7 +26,6 @@ resource "aws_eks_node_group" "eks-node-group" {
     Name                                        = "${var.cluster-name}-default-node-group"
     Region                                      = "${var.tag-region}"
     Country                                     = "${var.country}"
-    CECO                                        = "${var.ceco}"
     Owner                                       = "${var.owner}"
     Environment                                 = "${var.environment}"
   }

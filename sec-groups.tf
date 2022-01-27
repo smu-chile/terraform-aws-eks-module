@@ -29,7 +29,6 @@ module "cluster-sg" {
     "kubernetes.io/cluster/${var.cluster-name}" = "owned"
     Region                                      = "${var.tag-region}"
     Country                                     = "${var.country}"
-    CECO                                        = "${var.ceco}"
     Owner                                       = "${var.owner}"
     Environment                                 = "${var.environment}"
   }
@@ -71,7 +70,6 @@ module "node-sg" {
     "kubernetes.io/cluster/${var.cluster-name}" = "owned"
     Region                                      = "${var.tag-region}"
     Country                                     = "${var.country}"
-    CECO                                        = "${var.ceco}"
     Owner                                       = "${var.owner}"
     Environment                                 = "${var.environment}"
   }
