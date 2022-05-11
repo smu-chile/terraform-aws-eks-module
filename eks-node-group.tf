@@ -1,9 +1,21 @@
+resource "aws_launch_template" "foo" {
+  name = "foo"
+  user_data = filebase64("${path.module}/bootstrap.sh")
+
+}
+
 resource "aws_eks_node_group" "eks-node-group" {
   cluster_name    = var.cluster-name
   node_group_name = "${var.cluster-name}-default-node-group"
   node_role_arn   = aws_iam_role.node.arn
   subnet_ids      = var.private-subnet-ids
   disk_size       = 100
+
+  launch_template {
+    name = aws_launch_template.foo.name 
+    version = latest
+  }
+
   scaling_config {
     desired_size = var.desired-capacity
     max_size     = var.max-size
