@@ -12,7 +12,7 @@ resource "aws_eks_node_group" "eks-node-group" {
   disk_size       = 100
 
   launch_template {
-    name    = aws_launch_template.more_pods_per_node
+    name    = aws_launch_template.more_pods_per_node.name
     # version = latest
   }
 
