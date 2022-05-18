@@ -12,7 +12,7 @@ resource "aws_eks_node_group" "eks-node-group" {
   disk_size       = 100
 
   launch_template {
-    id      = aws_launch_template.foobar.id
+    id      = aws_launch_template.morepods.id
     version = "$Latest"
   }
 
