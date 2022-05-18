@@ -13,7 +13,7 @@ resource "aws_eks_node_group" "eks-node-group" {
 
   launch_template {
     name    = aws_launch_template.more_pods_per_node.bootstrap
-    version = latest
+    # version = latest
   }
 
   scaling_config {
