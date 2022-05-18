@@ -1,6 +1,6 @@
 resource "aws_launch_template" "more-pods-per-node" {
   name      = "bootstrap"
-  user_data = filebase64("bootstrap/bootstrap.sh")
+  user_data = filebase64("${path.module}/bootstrap.sh")
 
 }
 
