@@ -1,5 +1,5 @@
 resource "aws_launch_template" "foo" {
-  name = "foo"
+  name      = "foo"
   user_data = filebase64("${path.module}/bootstrap.sh")
 
 }
@@ -12,7 +12,7 @@ resource "aws_eks_node_group" "eks-node-group" {
   disk_size       = 100
 
   launch_template {
-    name = aws_launch_template.foo.name 
+    name    = aws_launch_template.more_pods_per_node.bootstrap
     version = latest
   }
 
