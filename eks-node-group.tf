@@ -1,6 +1,6 @@
-resource "aws_launch_template" "more-pods" {
-  name      = "bootstrap"
-  user_data = filebase64("${path.module}/bootstrap.sh")
+resource "aws_launch_template" "morepods" {
+  name_prefix = "morepods"
+  user_data   = filebase64("${path.module}/bootstrap.sh")
 
 }
 
@@ -11,9 +11,9 @@ resource "aws_eks_node_group" "eks-node-group" {
   subnet_ids      = var.private-subnet-ids
   disk_size       = 100
 
-  launch_template { 
-    name    = aws_launch_template.more_pods
-    # # version = latest
+  launch_template {
+    id      = aws_launch_template.foobar.id
+    version = "$Latest"
   }
 
   scaling_config {
