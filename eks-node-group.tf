@@ -11,10 +11,10 @@ resource "aws_eks_node_group" "eks-node-group" {
   subnet_ids      = var.private-subnet-ids
   disk_size       = 100
 
-  launch_template {
-    name    = aws_launch_template.more_pods.name
-    # version = latest
-  }
+  # launch_template {
+  #   name    = aws_launch_template.more_pods.name
+  #   # version = latest
+  # }
 
   scaling_config {
     desired_size = var.desired-capacity
