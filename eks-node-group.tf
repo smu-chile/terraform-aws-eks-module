@@ -16,6 +16,9 @@ resource "aws_eks_node_group" "eks-node-group" {
   #   # version = latest
   # }
 
+  use_max_pods = false
+  max_pods     = 110
+
   scaling_config {
     desired_size = var.desired-capacity
     max_size     = var.max-size
