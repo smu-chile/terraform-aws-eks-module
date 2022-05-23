@@ -1,6 +1,6 @@
 resource "aws_launch_template" "morepods" {
   name_prefix            = "morepods"
-  vpc_security_group_ids = ["sg-0b37a81947d9b8015"]
+  vpc_security_group_ids = [data.aws_security_group.node.id]
   user_data              = filebase64("${path.module}/bootstrap.sh")
 }
 
