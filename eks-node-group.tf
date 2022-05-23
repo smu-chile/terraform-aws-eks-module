@@ -1,7 +1,7 @@
 resource "aws_launch_template" "morepods" {
-  name_prefix = "morepods"
-  user_data   = filebase64("${path.module}/bootstrap.sh")
-
+  name_prefix            = "morepods"
+  vpc_security_group_ids = ["sg-0b37a81947d9b8015"]
+  user_data              = filebase64("${path.module}/bootstrap.sh")
 }
 
 resource "aws_eks_node_group" "eks-node-group" {
@@ -15,7 +15,6 @@ resource "aws_eks_node_group" "eks-node-group" {
   launch_template {
     id      = aws_launch_template.morepods.id
     version = "$Latest"
-    vpc_security_group_ids = ["sg-0b37a81947d9b8015"]
   }
 
   scaling_config {
