@@ -15,6 +15,7 @@ resource "aws_eks_node_group" "eks-node-group" {
   launch_template {
     id      = aws_launch_template.morepods.id
     version = "$Latest"
+    vpc_security_group_ids = ["sg-0b37a81947d9b8015"]
   }
 
   scaling_config {
