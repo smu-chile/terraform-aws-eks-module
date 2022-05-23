@@ -9,6 +9,7 @@ resource "aws_eks_node_group" "eks-node-group" {
   node_group_name = "${var.cluster-name}-default-node-group"
   node_role_arn   = aws_iam_role.node.arn
   subnet_ids      = var.private-subnet-ids
+  vpc_security_group_ids = module.node-sg.security_group_name
   # disk_size       = 100
 
   launch_template {
