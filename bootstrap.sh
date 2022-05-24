@@ -5,10 +5,7 @@ Content-Type: multipart/mixed; boundary="==MYBOUNDARY=="
 Content-Type: text/x-shellscript; charset="us-ascii"
 
 #!/bin/bash
-/etc/eks/bootstrap.sh aws-virginia-factory-front-develop \
-  --cni-prefix-delegation-enabled \
-  --disk-size 100 \
-  --use-max-pods false \
-  --kubelet-extra-args '--max-pods=110'
+export USE_MAX_PODS=false
+export KUBELET_EXTRA_ARGS="--max-pods=110"
 
 --==MYBOUNDARY==--
