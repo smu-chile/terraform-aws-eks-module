@@ -12,7 +12,7 @@ resource "aws_eks_node_group" "eks-node-group" {
 
   launch_template {
     id      = aws_launch_template.morepods.id
-    version = "$LATEST"
+    version = "$Latest"
   }
 
   scaling_config {
