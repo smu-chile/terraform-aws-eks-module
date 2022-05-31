@@ -12,6 +12,8 @@ resource "aws_eks_cluster" "eks" {
 
   enabled_cluster_log_types = var.eks-cw-logging
 
+  bootstrap_extra_args = ""
+
   depends_on = [
     aws_iam_role_policy_attachment.cluster-AmazonEKSClusterPolicy,
     aws_iam_role_policy_attachment.cluster-AmazonEKSServicePolicy
@@ -25,15 +27,4 @@ resource "aws_eks_cluster" "eks" {
     Environment                                 = "${var.environment}"
   }
 
-}
-
-output "node_userdata" {
-  value = templatefile("${path.module}/cloud-init.template.yaml", {
-    cluster_endpoint = aws_eks_cluster.eks.endpoint
-    cluster_ca = aws_eks_cluster.eks.certificate_authority.0.data
-    cluster_id = aws_eks_cluster.eks.id
-    kubelet_config_overrides_json = jsonencode({
-      maxPods = 110
-    })
-  })
 }
