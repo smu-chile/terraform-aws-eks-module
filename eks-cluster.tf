@@ -26,3 +26,14 @@ resource "aws_eks_cluster" "eks" {
   }
 
 }
+
+output "node_userdata" {
+  value = templatefile("${path.module}/cloud-init.template.yaml", {
+    cluster_endpoint = aws_eks_cluster.eks.endpoint
+    cluster_ca = aws_eks_cluster.eks.certificate_authority.0.data
+    cluster_id = aws_eks_cluster.eks.id
+    kubelet_config_overrides_json = jsonencode({
+      maxPods = 110
+    })
+  })
+}
