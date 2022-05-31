@@ -12,8 +12,6 @@ resource "aws_eks_cluster" "eks" {
 
   enabled_cluster_log_types = var.eks-cw-logging
 
-  bootstrap_extra_args = ""
-
   depends_on = [
     aws_iam_role_policy_attachment.cluster-AmazonEKSClusterPolicy,
     aws_iam_role_policy_attachment.cluster-AmazonEKSServicePolicy
