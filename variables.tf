@@ -61,3 +61,8 @@ variable "owner" {
 variable "private-subnet-ids" {
   description = "id de subnet red privada donde se alojará el cluster"
 }
+variable "max-pods" {
+  type        = string
+  default     = "110"
+  description = ""
+}
