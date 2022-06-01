@@ -28,7 +28,7 @@ resource "aws_eks_cluster" "eks" {
 }
 
 resource "aws_eks_addon" "vpc-cni" {
-  cluster_name      = var.cluster-name
+  cluster_name      = aws_eks_cluster.eks.name
   addon_name        = "vpc-cni"
   resolve_conflicts = "OVERWRITE"
 }

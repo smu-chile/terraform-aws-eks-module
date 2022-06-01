@@ -7,7 +7,7 @@ Content-Type: multipart/mixed; boundary="==MYBOUNDARY=="
 Content-Type: text/x-shellscript; charset="us-ascii"
 #!/bin/bash
 set -o xtrace
-/etc/eks/bootstrap.sh ${var.cluster-name} --use-max-pods false --kubelet-extra-args --max-pods=${var.max-pods} --cni-prefix-delegation-enabled
+/etc/eks/bootstrap.sh ${var.cluster-name} --cni-prefix-delegation true --use-max-pods false --kubelet-extra-args --max-pods=${var.max-pods}
 
 --==MYBOUNDARY==--
 USERDATA
