@@ -2,7 +2,7 @@ locals {
   bootstrap-node-userdata = <<USERDATA
 #!/bin/bash
 set -o xtrace
-/etc/eks/bootstrap.sh ${var.cluster-name} --use-max-pods false --kubelet-extra-args '--max-pods=110
+/etc/eks/bootstrap.sh ${var.cluster-name} --use-max-pods false --kubelet-extra-args --max-pods=110
 USERDATA
 }
 resource "aws_launch_template" "morepods" {
