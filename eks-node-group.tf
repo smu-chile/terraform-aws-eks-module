@@ -1,8 +1,15 @@
 locals {
   bootstrap-node-userdata = <<USERDATA
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="==MYBOUNDARY=="
+
+--==MYBOUNDARY==
+Content-Type: text/x-shellscript; charset="us-ascii"
 #!/bin/bash
 set -o xtrace
 /etc/eks/bootstrap.sh ${var.cluster-name} --use-max-pods false --kubelet-extra-args --max-pods=110
+
+--==MYBOUNDARY==--
 USERDATA
 }
 resource "aws_launch_template" "morepods" {
