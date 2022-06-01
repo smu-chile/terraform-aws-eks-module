@@ -26,3 +26,9 @@ resource "aws_eks_cluster" "eks" {
   }
 
 }
+
+resource "aws_eks_addon" "example" {
+  cluster_name = var.cluster-name
+  addon_name   = "vpc-cni"
+  version = "latest"
+}
