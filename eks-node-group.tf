@@ -15,7 +15,7 @@ USERDATA
 resource "aws_launch_template" "morepods" {
   name_prefix            = "morepods"
   vpc_security_group_ids = [data.aws_security_group.node.id]
-  user_data              = "${base64encode(local.bootstrap-node-userdata)}"
+  user_data              = base64encode(local.bootstrap-node-userdata)
 }
 
 resource "aws_eks_node_group" "eks-node-group" {
