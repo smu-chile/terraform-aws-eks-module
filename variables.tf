@@ -63,6 +63,5 @@ variable "private-subnet-ids" {
 }
 variable "max-pods" {
   type        = string
-  default     = "110"
-  description = ""
+  description = "MaxPods for CNI"
 }
