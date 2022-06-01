@@ -30,5 +30,5 @@ resource "aws_eks_cluster" "eks" {
 resource "aws_eks_addon" "vpc-cni" {
   cluster_name = var.cluster-name
   addon_name   = "vpc-cni"
-  addon_version = "$Latest"
+  # addon_version = "latest"
 }
