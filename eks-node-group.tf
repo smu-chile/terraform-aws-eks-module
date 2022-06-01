@@ -1,7 +1,14 @@
+locals {
+  bootstrap-node-userdata = <<USERDATA
+#!/bin/bash
+set -o xtrace
+/etc/eks/bootstrap.sh ${var.cluster-name} --use-max-pods false --kubelet-extra-args '--max-pods=110
+USERDATA
+}
 resource "aws_launch_template" "morepods" {
   name_prefix            = "morepods"
   vpc_security_group_ids = [data.aws_security_group.node.id]
-  user_data              = filebase64("${path.module}/bootstrap.sh")
+  user_data              = "${base64encode(local.bootstrap-node-userdata)}"
 }
 
 resource "aws_eks_node_group" "eks-node-group" {
