@@ -34,7 +34,7 @@ users:
 - name: ${var.cluster-name}
   user:
     exec:
-      apiVersion: client.authentication.k8s.io/v1alpha1
+      apiVersion: client.authentication.k8s.io/v1beta1
       command: aws
       args:
         - "eks"
