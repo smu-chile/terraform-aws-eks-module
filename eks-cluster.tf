@@ -12,7 +12,9 @@ resource "aws_eks_cluster" "eks" {
 
   enabled_cluster_log_types = var.eks-cw-logging
 
-  ip_family = ipv6
+  kubernetes_network_config {
+    ip_family = ipv6
+  }
 
   depends_on = [
     aws_iam_role_policy_attachment.cluster-AmazonEKSClusterPolicy,
