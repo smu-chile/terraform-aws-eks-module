@@ -1,21 +1,24 @@
-locals {
-  bootstrap-node-userdata = <<USERDATA
-MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="==MYBOUNDARY=="
+module "eks__user_data" {
+  source  = "terraform-aws-modules/eks/aws//modules/_user_data"
+  version = "18.23.0"
+  # insert the 1 required variable here
+  pre_bootstrap_user_data = <<-EOT
+  #!/bin/bash
+  set -ex
+  cat <<-EOF > /etc/profile.d/bootstrap.sh
+  export USE_MAX_PODS=false
+  export KUBELET_EXTRA_ARGS="--max-pods=110"
+  EOF
+  # Source extra environment variables in bootstrap script
+  sed -i '/^set -o errexit/a\\nsource /etc/profile.d/bootstrap.sh' /etc/eks/bootstrap.sh
+  EOT
 
---==MYBOUNDARY==
-Content-Type: text/x-shellscript; charset="us-ascii"
-#!/bin/bash
-set -o xtrace
-/etc/eks/bootstrap.sh ${var.cluster-name} --use-max-pods false --kubelet-extra-args --max-pods=${var.max-pods} 
-
---==MYBOUNDARY==--
-USERDATA
 }
+
 resource "aws_launch_template" "morepods" {
   name_prefix            = "morepods"
   vpc_security_group_ids = [data.aws_security_group.node.id]
-  user_data              = base64encode(local.bootstrap-node-userdata)
+  user_data              = module.eks__user_data.user_data
 }
 
 resource "aws_eks_node_group" "eks-node-group" {
