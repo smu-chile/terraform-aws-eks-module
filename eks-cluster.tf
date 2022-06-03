@@ -11,7 +11,7 @@ resource "aws_eks_cluster" "eks" {
   }
 
   kubernetes_network_config {
-    ipFamily = "IPv6"
+    ip_family = "IPv6"
   }
 
   enabled_cluster_log_types = var.eks-cw-logging
