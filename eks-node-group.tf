@@ -61,8 +61,8 @@ module "self_managed_node_group" {
     data.aws_security_group.cluster.id
   ]
 
-  min_size     = var.min_size
-  max_size     = var.max_size
+  min_size     = var.min-size
+  max_size     = var.max-size
   desired_size = var.desired-capacity
 
   # launch_template_name   = "separate-self-mng"
