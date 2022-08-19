@@ -53,16 +53,16 @@ module "self_managed_node_group" {
   cluster_name        = aws_eks_cluster.eks.id
   cluster_version     = var.k8s-version
   cluster_endpoint    = aws_eks_cluster.eks.endpoint
-  cluster_auth_base64 = aws_eks_cluster.eks.certificate_authority.data
+  cluster_auth_base64 = aws_eks_cluster.eks.certificate_authority[0].data
 
-  vpc_id     = var.vpc_id
+  vpc_id     = var.vpc-id
   subnet_ids = var.private-subnet-ids
   vpc_security_group_ids = [
     data.aws_security_group.cluster.id
   ]
 
-  min_size     = var.mix-size
-  max_size     = var.max-size
+  min_size     = var.min_size
+  max_size     = var.max_size
   desired_size = var.desired-capacity
 
   # launch_template_name   = "separate-self-mng"
