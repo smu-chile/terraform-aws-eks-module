@@ -65,6 +65,11 @@ module "self_managed_node_group" {
   max_size     = var.max-size
   desired_size = var.desired-capacity
 
+
+  # Self managed node groups will not automatically create the aws-auth configmap so we need to
+  create_aws_auth_configmap = true
+  manage_aws_auth_configmap = true
+
   # launch_template_name   = "separate-self-mng"
   instance_type          = var.node-instance-type
 

@@ -4,7 +4,7 @@ output "kubeconfig" {
 }
 
 output "config-map-aws-auth" {
-  value = local.config-map-aws-auth
+  value = module.self_managed_node_group.aws_auth_configmap_yaml
 }
 
 output "route53-arn" {
